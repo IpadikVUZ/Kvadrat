@@ -29,7 +29,7 @@ void solution (double a, double b, double c){
     else{
         double discriminant=b*b-4*a*c;
         if (discriminant==0){
-            printf ( "%lf",-b/(2*a));
+            printf ("%lf",-b/(2*a));
         }
         else if (discriminant<0){
             printf ("Решений нет");
