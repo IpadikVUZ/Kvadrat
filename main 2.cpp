@@ -10,7 +10,6 @@ void getdouble (double *a){
           printf ("Ошибка ввода, попробуйте еще раз  ");
           clean();
     }
-    
 }
 
 void message (int n, double x1, double x2){
