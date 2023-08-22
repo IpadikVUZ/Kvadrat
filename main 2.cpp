@@ -1,14 +1,27 @@
 #include <stdio.h>
 #include <cmath>
 
-enum message{
-    twosol,
-    onesol,
-    infsol,
-    nosol
-};
-
+void solutionsquare (double a, double b, double c, double *x1,  double *x2, int *N);
 void solutionline (double b, double c, double *x1, int *N);
+void input (double *a, double *b, double *c);
+void output (int n, double x1, double x2);
+void getdouble (double *a);
+void clean();
+
+int main(){
+    int N=0;
+    double a = 0, b = 0, c = 0, x1 = 0, x2 = 0; // ax^2+bx+c=0
+    input (&a,&b,&c);
+    solutionsquare (a, b, c, &x1, &x2, &N);
+    output (N, x1, x2);
+}    
+
+enum message{
+    twosol = 0,
+    onesol = 1,
+    infsol = 2,
+    nosol = 3
+};
 
 void solutionsquare (double a, double b, double c, double *x1,  double *x2, int *N){
     if (a==0) {
@@ -42,9 +55,6 @@ void solutionline (double b, double c, double *x1, int *N){
             *x1=-c/b;
      }      
 }
-
-void getdouble (double *a);
-void clean();
 
 void input (double *a, double *b, double *c){
     printf ("Введите коэффицент 2-й степени:  ");
@@ -82,11 +92,3 @@ void getdouble (double *a){
 void clean(){
     while (getchar()!='\n') {;}
 }
-
-int main(){
-    int N=0;
-    double a = 0, b = 0, c = 0, x1 = 0, x2 = 0; // ax^2+bx+c=0
-    input(&a,&b,&c);
-    solutionsquare(a, b, c, &x1, &x2, &N);
-    output(N, x1, x2);
-}    
