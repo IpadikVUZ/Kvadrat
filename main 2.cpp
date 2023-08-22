@@ -1,6 +1,13 @@
 #include <stdio.h>
 #include <cmath>
 
+enum message{
+    twosol = 0,
+    onesol = 1,
+    infsol = 2,
+    nosol = 3
+};
+
 void solutionsquare (double a, double b, double c, double *x1,  double *x2, int *N);
 void solutionline (double b, double c, double *x1, int *N);
 void input (double *a, double *b, double *c);
@@ -15,13 +22,6 @@ int main(){
     solutionsquare (a, b, c, &x1, &x2, &N);
     output (N, x1, x2);
 }    
-
-enum message{
-    twosol = 0,
-    onesol = 1,
-    infsol = 2,
-    nosol = 3
-};
 
 void solutionsquare (double a, double b, double c, double *x1,  double *x2, int *N){
     if (a==0) {
