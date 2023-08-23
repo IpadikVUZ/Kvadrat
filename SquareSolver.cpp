@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <assert.h>
 #include "SquareSolver.h"
+
 enum message{
     twosol = 0,
     onesol = 1,
