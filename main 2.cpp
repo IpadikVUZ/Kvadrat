@@ -61,7 +61,7 @@ void solutionsquare (double a, double b, double c, double *x1, double *x2, int *
             double sqrtd = sqrt(discriminant);
             *N = twosol;
             *x1 = (-b+sqrtd) / (2*a);
-            *x2 = (-b-sqrtd / (2*a);        
+            *x2 = (-b-sqrtd) / (2*a);        
         }         
     }
 }
