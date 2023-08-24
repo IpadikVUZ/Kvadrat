@@ -4,13 +4,6 @@
 #include <assert.h>
 #include "SquareSolver.h"
 
-enum message{
-    twosol = 0,
-    onesol = 1,
-    infsol = 2,
-    nosol = 3
-};
-
 void solutionsquare (double a, double b, double c, double *x1, double *x2, int *N){
     assert (isfinite (a));
     assert (isfinite (b));
