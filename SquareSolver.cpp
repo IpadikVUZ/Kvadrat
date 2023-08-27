@@ -1,84 +1,83 @@
-#include <stdio.h>
-#include <math.h>
-#include <stdlib.h>
-#include <assert.h>
 #include "SquareSolver.h"
+#include <assert.h>
+#include <math.h>
+#include <stdio.h>
 
-void solutionsquare (double a, double b, double c, double *x1, double *x2, int *N){
+
+int solutionsquare (double a, double b, double c, double *x1, double *x2){
     assert (isfinite (a));
     assert (isfinite (b));
     assert (isfinite (c));
-    
+
     assert (x1 != NULL);
     assert (x2 != NULL);
-    assert (x1 != x2);
-    
+
     if (a == 0) {
-       solutionline (b, c, &*x1, &*N);
+       return solutionline (b, c, x1);
     }
     else{
         double discriminant = b*b - 4*a*c;
         if (discriminant == 0){
-            *N = onesol;
             *x1 = -b / (2*a);
-        }        
+            return ONESOL;
+        }
         else if (discriminant < 0)
-            *N = nosol;
+            return NOSOL;
         else{
             double sqrtd = sqrt(discriminant);
-            *N = twosol;
-            *x1 = (-b+sqrtd) / (2*a);
-            *x2 = (-b-sqrtd) / (2*a);        
-        }         
+            *x1 = (-b + sqrtd) / (2*a);
+            *x2 = (-b - sqrtd) / (2*a);
+            return TWOSOL;
+        }
     }
 }
 
-void solutionline (double b, double c, double *x1, int *N){
+int solutionline (double b, double c, double *x1){
     assert (isfinite (b));
     assert (isfinite (c));
     assert (x1 != NULL);
-    
-     if (b==0){
+
+     if (b == 0){
          if (c==0)
-                *N = infsol;
+                return INFSOL;
          else
-                *N = nosol;     
+                return NOSOL;
      }
      else{
-            *N = onesol;
-            *x1 = -c/b;
-     }      
+            *x1 = -c / b;
+            return ONESOL;
+     }
 }
 
 void input (double *a, double *b, double *c){
-    printf ("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†ÐµÐ½Ñ‚ 2-Ð¹ ÑÑ‚ÐµÐ¿ÐµÐ½Ð¸:  ");
-    getdouble (&*a);
-    printf ("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÐºÐ¾ÑÑ„Ñ„Ð¸Ñ†ÐµÐ½Ñ‚ 1-Ð¹ ÑÑ‚ÐµÐ¿ÐµÐ½Ð¸:  ");
-    getdouble (&*b);
-    printf ("Ð’Ð²ÐµÐ´Ð¸Ñ‚Ðµ ÑÐ²Ð¾Ð±Ð¾Ð´Ð½Ñ‹Ð¹ Ñ‡Ð»ÐµÐ½:  ");
-    getdouble (&*c);
+    printf ("Ââåäèòå êîýôôèöåíò 2-é ñòåïåíè:  ");
+    getdouble (a);
+    printf ("Ââåäèòå êîýôôèöåíò 1-é ñòåïåíè:  ");
+    getdouble (b);
+    printf ("Ââåäèòå ñâîáîäíûé ÷ëåí:  ");
+    getdouble (c);
 }
 
-void output (int N, double x1, double x2){
-    switch(N){
-        case twosol: 
-           printf ("Ð”Ð²Ð° Ñ€ÐµÑˆÐµÐ½Ð¸Ñ: %lf %lf",x1,x2);
+void output (int SolCount, double x1, double x2){
+    switch(SolCount){
+        case TWOSOL:
+           printf ("Äâà ðåøåíèÿ: %lf %lf",x1,x2);
            break;
-        case onesol:
-           printf ("ÐžÐ´Ð½Ð¾ Ñ€ÐµÑˆÐµÐ½Ð¸Ðµ %lf", x1);
+        case ONESOL:
+           printf ("Îäíî ðåøåíèå %lf", x1);
            break;
-        case infsol:
-           printf ("Ð‘ÐµÑÐºÐ¾Ð½ÐµÑ‡Ð½Ð¾Ðµ ÐºÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ñ€ÐµÑˆÐµÐ½Ð¸Ð¹");
+        case INFSOL:
+           printf ("Áåñêîíå÷íîå êîëè÷åñòâî ðåøåíèé");
            break;
-        case nosol:
-           printf ("ÐÐµÑ‚ Ñ€ÐµÑˆÐµÐ½Ð¸Ð¹");
+        case NOSOL:
+           printf ("Íåò ðåøåíèé");
            break;
     }
 }
 
 void getdouble (double *a){
-    while (scanf ("%lf", &*a)!=1){
-          printf ("ÐžÑˆÐ¸Ð±ÐºÐ° Ð²Ð²Ð¾Ð´Ð°, Ð¿Ð¾Ð¿Ñ€Ð¾Ð±ÑƒÐ¹Ñ‚Ðµ ÐµÑ‰Ðµ Ñ€Ð°Ð·  ");
+    while (scanf ("%lf", a)!=1){
+          printf ("Îøèáêà ââîäà, ïîïðîáóéòå åùå ðàç  ");
           clean();
     }
 }
