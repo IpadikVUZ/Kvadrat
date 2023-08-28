@@ -1,6 +1,14 @@
 #include "SquareSolver.h"
 #include <stdio.h>
 
+struct square_set{
+    double a;
+    double b;
+    double c;
+    double x1;
+    double x2;
+    int SolCount;
+};
 
 void testsquaresolver(){
     testsolutionsquare();
@@ -8,44 +16,42 @@ void testsquaresolver(){
 }
 
 void testsolutionsquare(){
-    double x1 =0, x2 = 0;
-    int SolCount=-1;
+    struct square_set solset[3] = {
+    {1, 2, 3, 0, 0, NOSOL},
+    {1, 2, 1, -1, 0, ONESOL},
+    {1, 2, -3, 1, -3, TWOSOL}
+    };
 
     testsolutionline();
-
-    SolCount = solutionsquare (1, 2, 3, &x1, &x2);
-    if ( (x1 == 0 && x2 ==0 && SolCount == NOSOL) == false)
-        printf ("Ошибка в solutionsquare, при a = 1, b = 2, c = 3. x1 должен быть равен 0, он равен %lf, x2 должен быть равен 0, он равен %lf, SolCount должен быть равен 3, он равен %d \n", x1, x2, SolCount);
-
-    x1 =0, x2 = 0, SolCount =-1;
-    SolCount = solutionsquare (1, 2, 1, &x1, &x2);
-    if ( (x1 == -1 && x2 ==0 && SolCount == ONESOL) == false)
-        printf ("Ошибка в solutionsquare, при a = 1, b = 2, c = 1. x1 должен быть равен -1, он равен %lf, x2 должен быть равен 0, он равен %lf, SolCount должен быть равен 1, он равен %d \n", x1, x2, SolCount);
-
-    x1 =0, x2 = 0, SolCount =-1;
-    SolCount = solutionsquare (1, 2, -3, &x1, &x2);
-    if ( (x1 == 1 && x2 ==-3 && SolCount == TWOSOL) == false)
-        printf ("Ошибка в solutionsquare, при a = 1, b = 2, c = -3. x1 должен быть равен -1, он равен %lf, x2 должен быть равен -3, он равен %lf, SolCount должен быть равен 0, он равен %d \n", x1, x2, SolCount);
+    for(int i=0;i<3;i++){
+        double x1 = solset[i].x1;
+        double x2 = solset[i].x2;
+        int SolCount = -1;
+        SolCount = solutionsquare (solset[i].a, solset[i].b, solset[i].c, &x1, &x2);
+        if ( (x1 == solset[i].x1 && x2 == solset[i].x2 && SolCount == solset[i].SolCount) == false)
+        printf ("Ошибка в solutionsquare, при a = %lf, b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, x2 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].a, solset[i].b, solset[i].c, x1, solset[i].x1, x2, solset[i].x2, SolCount, solset[i].SolCount);
+    }
 }
 
 void testsolutionline(){
+    struct square_set solset[3] = {
+    {0, 0, 0, 0, 0, INFSOL},
+    {0, 0, 2, 0, 0, NOSOL},
+    {0, 1, 2, -2, 0, ONESOL}
+    };
+
+
     double x1 =0;
-    int SolCount=-1;
-    SolCount = solutionline (0, 0, &x1);
-    if ( (x1 == 0 && SolCount == INFSOL) == false )
-        printf("Ошибка в solutionline, b = 0, c = 0. x1 должен быть равен 0, он равен %lf, SolCount должен быть равен 2, он равен %d \n", x1, SolCount);
 
-    x1 =0, SolCount =-1;
-    SolCount = solutionline (0, 2, &x1);
-    if ( (x1 == 0 && SolCount == NOSOL) == false)
-        printf("Ошибка в solutionline, b = 0, c = 2. x1 должен быть равен 0, он равен %lf, SolCount должен быть равен 3, он равен %d \n", x1, SolCount);
+     for(int i=0;i<3;i++){
 
-    x1 =0, SolCount =-1;
-    SolCount = solutionline (1, 2, &x1);
-    if ( (x1 == -2 && SolCount == ONESOL) == false )
-        printf("Ошибка в solutionline, b = 1, c = 2. x1 должен быть равен -2, он равен %lf, SolCount должен быть равен 1, он равен %d \n", x1, SolCount);
+        double x1 = solset[i].x1;
+        int SolCount=-1;
+        SolCount = solutionline (solset[i].b, solset[i].c, &x1);
+        if ( (x1 == solset[i].x1 && SolCount == solset[i].SolCount) == false)
+        printf ("Ошибка в solutionsquare, при b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].b, solset[i].c, x1, solset[i].x1, SolCount, solset[i].SolCount);
+    }
 }
-
 
 
 
