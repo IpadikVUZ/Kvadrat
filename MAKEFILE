@@ -1,0 +1,16 @@
+all: SquareProject
+
+SquareProject: SquareSolver.o Squaretester.o SquareProject.o
+	g++ SquareSolver.o Squaretester.o SquareProject.o -o SquareProject
+
+SquareSolver.o: SquareSolver.cpp
+	g++ -c SquareSolver.cpp
+
+Squaretester.o: Squaretester.cpp
+	g++ -c Squaretester.cpp
+
+SquareProject.o: SquareProject.cpp
+	g++ -c SquareProject.cpp
+
+clean:
+	rm -rf *.o SquareProject
