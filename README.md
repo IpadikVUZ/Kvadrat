@@ -12,7 +12,7 @@
 - Ввести `make`, чтобы собрать exe файл, `make clean`, чтобы удалить .o файлы
 
 ## Использование
-- запустить получившийся SquareProject.exe
+- Запустить получившийся SquareProject.exe
 - Следовать инструкциям из консоли
 ![Иллюстрация к проекту](https://github.com/IpadikVUZ/Kvadrat/blob/main/preview.png)
 
