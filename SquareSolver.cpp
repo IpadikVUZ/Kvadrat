@@ -12,16 +12,16 @@ int solutionsquare (double a, double b, double c, double *x1, double *x2){
     assert (x1 != NULL);
     assert (x2 != NULL);
 
-    if (a == 0) {
+    if (DCompare (a,0) == EQUAL) {
        return solutionline (b, c, x1);
     }
     else{
         double discriminant = b*b - 4*a*c;
-        if (discriminant == 0){
+        if (DCompare (discriminant,0) == EQUAL){
             *x1 = -b / (2*a);
             return ONESOL;
         }
-        else if (discriminant < 0)
+        else if (DCompare (discriminant,0) == SECONDLARGER)
             return NOSOL;
         else{
             double sqrtd = sqrt(discriminant);
@@ -37,8 +37,8 @@ int solutionline (double b, double c, double *x1){
     assert (isfinite (c));
     assert (x1 != NULL);
 
-     if (b == 0){
-         if (c==0)
+     if (DCompare (b,0) == EQUAL){
+         if (DCompare (c,0) == EQUAL)
                 return INFSOL;
          else
                 return NOSOL;
@@ -50,18 +50,19 @@ int solutionline (double b, double c, double *x1){
 }
 
 void input (double *a, double *b, double *c){
-    printf ("Введите коэффицент 2-й степени:  ");
+    printf("Данная программа решает уравнения типа ax^2+bx+c=0 \n");
+    printf ("Введите a:  ");
     getdouble (a);
-    printf ("Введите коэффицент 1-й степени:  ");
+    printf ("Введите b:  ");
     getdouble (b);
-    printf ("Введите свободный член:  ");
+    printf ("Введите c:  ");
     getdouble (c);
 }
 
 void output (int SolCount, double x1, double x2){
     switch(SolCount){
         case TWOSOL:
-           printf ("Два решения: %lf %lf",x1,x2);
+           printf ("Два решения: %lf и %lf",x1,x2);
            break;
         case ONESOL:
            printf ("Одно решение %lf", x1);
@@ -73,6 +74,13 @@ void output (int SolCount, double x1, double x2){
            printf ("Нет решений");
            break;
     }
+}
+
+int DCompare (double a, double b){
+    double epsilon = 1e-30;
+    if (fabs(a - b) < epsilon) return EQUAL;
+    else if (a - b > epsilon) return FIRSTLARGER;
+    else return SECONDLARGER;
 }
 
 void getdouble (double *a){
