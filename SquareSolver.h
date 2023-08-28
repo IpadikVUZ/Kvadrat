@@ -1,5 +1,5 @@
-#ifndef SquareSolver.h
-#define SquareSolver.h
+#ifndef SQUARE_SOLVER_H
+#define SQUARE_SOLVER_H
 
 enum MESSAGE_SOLUTION{
     TWOSOL = 0,
@@ -102,3 +102,5 @@ void testsolutionsquare();
 void testsquaresolver();
 
 #endif
+
+

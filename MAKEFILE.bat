@@ -1,0 +1,1 @@
+g++ SquareProject.cpp SquareSolver.cpp Squaretester.cpp -o SquareSolver
