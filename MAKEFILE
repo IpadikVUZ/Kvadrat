@@ -1,16 +1,20 @@
-all: SquareProject
+F1 = SquareSolver
+F2 = Squaretester
+F3 = SquareProject
 
-SquareProject: SquareSolver.o Squaretester.o SquareProject.o
-	g++ SquareSolver.o Squaretester.o SquareProject.o -o SquareProject
+all: $(F3)
 
-SquareSolver.o: SquareSolver.cpp
-	g++ -c SquareSolver.cpp
+$(F3): $(F1).o $(F2).o $(F3).o
+	g++ $(F1).o $(F2).o $(F3).o -o $(F3)
 
-Squaretester.o: Squaretester.cpp
-	g++ -c Squaretester.cpp
+$(F1).o: $(F1).cpp
+	g++ -c $(F1).cpp
 
-SquareProject.o: SquareProject.cpp
-	g++ -c SquareProject.cpp
+$(F2).o: $(F2).cpp
+	g++ -c $(F2).cpp
+
+$(F3).o: $(F3).cpp
+	g++ -c $(F3).cpp
 
 clean:
-	rm -rf *.o SquareProject
+	rm -rf *.o $(F3)
