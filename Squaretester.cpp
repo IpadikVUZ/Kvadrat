@@ -22,14 +22,13 @@ void testsolutionsquare(){
     {1, 2, -3, 1, -3, TWOSOL}
     };
 
-    testsolutionline();
     for(int i=0;i<3;i++){
         double x1 = solset[i].x1;
         double x2 = solset[i].x2;
         int SolCount = -1;
         SolCount = solutionsquare (solset[i].a, solset[i].b, solset[i].c, &x1, &x2);
         if ( (x1 == solset[i].x1 && x2 == solset[i].x2 && SolCount == solset[i].SolCount) == false)
-        printf ("Ошибка в solutionsquare, при a = %lf, b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, x2 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].a, solset[i].b, solset[i].c, x1, solset[i].x1, x2, solset[i].x2, SolCount, solset[i].SolCount);
+        printf ("Ошибка в solutionsquare, при a = %lf, b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, x2 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].a, solset[i].b, solset[i].c, solset[i].x1, x1, solset[i].x2, x2, solset[i].SolCount), SolCount;
     }
 }
 
@@ -40,16 +39,12 @@ void testsolutionline(){
     {0, 1, 2, -2, 0, ONESOL}
     };
 
-
-    double x1 =0;
-
-     for(int i=0;i<3;i++){
-
+    for(int i=0;i<3;i++){
         double x1 = solset[i].x1;
         int SolCount=-1;
         SolCount = solutionline (solset[i].b, solset[i].c, &x1);
         if ( (x1 == solset[i].x1 && SolCount == solset[i].SolCount) == false)
-        printf ("Ошибка в solutionsquare, при b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].b, solset[i].c, x1, solset[i].x1, SolCount, solset[i].SolCount);
+        printf ("Ошибка в solutionline, при b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].b, solset[i].c, solset[i].x1, x1, solset[i].SolCount, SolCount);
     }
 }
 
