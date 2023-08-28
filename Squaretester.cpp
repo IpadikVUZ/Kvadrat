@@ -28,7 +28,7 @@ void testsolutionsquare(){
         int SolCount = -1;
         SolCount = solutionsquare (solset[i].a, solset[i].b, solset[i].c, &x1, &x2);
         if ( (x1 == solset[i].x1 && x2 == solset[i].x2 && SolCount == solset[i].SolCount) == false)
-        printf ("Ошибка в solutionsquare, при a = %lf, b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, x2 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].a, solset[i].b, solset[i].c, solset[i].x1, x1, solset[i].x2, x2, solset[i].SolCount), SolCount;
+            printf ("Ошибка в solutionsquare, при a = %lf, b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, x2 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].a, solset[i].b, solset[i].c, solset[i].x1, x1, solset[i].x2, x2, solset[i].SolCount), SolCount;
     }
 }
 
@@ -44,7 +44,7 @@ void testsolutionline(){
         int SolCount=-1;
         SolCount = solutionline (solset[i].b, solset[i].c, &x1);
         if ( (x1 == solset[i].x1 && SolCount == solset[i].SolCount) == false)
-        printf ("Ошибка в solutionline, при b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].b, solset[i].c, solset[i].x1, x1, solset[i].SolCount, SolCount);
+            printf ("Ошибка в solutionline, при b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].b, solset[i].c, solset[i].x1, x1, solset[i].SolCount, SolCount);
     }
 }
 
