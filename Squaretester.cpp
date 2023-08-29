@@ -31,7 +31,7 @@ void TestSolutionSquare(){
         SolCount = SolutionSquare (SolSet[i].a, SolSet[i].b, SolSet[i].c, &x1, &x2);
 
         if (( DCompare(x1,SolSet[i].x1) == EQUAL &&
-             DCompare(x2,SolSet[i].x2) == EQUAL &&
+             DCompare (x2,SolSet[i].x2) == EQUAL &&
              SolCount == SolSet[i].SolCount)== false)
 
             printf ("Ошибка в SolutionSquare, при a = %lf, b = %lf, c = %lf. x1 должен быть равен %lf, "
@@ -55,7 +55,7 @@ void TestSolutionLine(){
 
         SolCount = SolutionLine (SolSet[i].b, SolSet[i].c, &x1);
 
-        if (( DCompare(x1, SolSet[i].x1) == EQUAL &&
+        if (( DCompare (x1, SolSet[i].x1) == EQUAL &&
              SolCount == SolSet[i].SolCount) == false)
             printf ("Ошибка в SolutionLine, при b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, "
             "SolCount должен быть равен %d, он равен %d \n \n",
