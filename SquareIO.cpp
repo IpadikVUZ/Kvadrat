@@ -1,9 +1,9 @@
 #include "SquareSolver.h"
 #include <stdio.h>
 
-void main_input(int *type){
-    printf ("Введите 0, если хотите решить квадратное уравнение, если линейное, то 1: ");
-    get_type (type);
+int main_input(char a){
+    if(a == 'l') return 1;
+    else return 0;
 }
 
 void sq_input (double *a, double *b, double *c){

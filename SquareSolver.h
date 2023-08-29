@@ -41,10 +41,10 @@ MESSAGE_SOLUTION SolutionLine (double b, double c, double *x1);
 //-----------------------------------------------------------------------------------
 //! A main input function to type
 //!
-//! @param[out] type Pointer to the first number
+//! @param[out] a char from cmd
 //-----------------------------------------------------------------------------------
 
-void main_input(int *type);
+int main_input(char a);
 
 //-----------------------------------------------------------------------------------
 //! A function for entering three time periods of type double in square function

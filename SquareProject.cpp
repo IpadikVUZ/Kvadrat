@@ -1,16 +1,18 @@
 #include "SquareSolver.h"
 #include <TXLib.h>
 
-int main(){
+int main(int argc, char *argv[]){
+
     MESSAGE_SOLUTION SolCount; // Переменная, отвечающая за кол-во корней
     double a  = 0,
            b  = 0,
            c  = 0,
            x1 = 0,
            x2 = 0;// ax^2+bx+c=0
-    int type = -1;
+    int type = 0;
 
-    main_input(&type);
+    if(argv[1] != NULL)
+        type = main_input (*argv[1]);
 
     if (type == 0){
         TestSquareSolver();
