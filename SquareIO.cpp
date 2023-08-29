@@ -1,6 +1,10 @@
 #include "SquareSolver.h"
 #include <stdio.h>
 
+void main_input(int *type){
+    printf ("Введите 0, если хотите решить квадратное уравнение, если линейное, то 1: ");
+    get_type (type);
+}
 
 void sq_input (double *a, double *b, double *c){
     const int var_counts = 3;

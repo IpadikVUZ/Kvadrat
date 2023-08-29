@@ -8,10 +8,10 @@ int main(){
            c  = 0,
            x1 = 0,
            x2 = 0;// ax^2+bx+c=0
-    //линейное или квадратное
     int type = -1;
-    printf ("Введите 0, если хотите решить квадратное уравнение, если линейное,то 1: ");
-    get_type (&type);
+
+    main_input(&type);
+
     if (type == 0){
         TestSquareSolver();
         sq_input (&a, &b, &c);

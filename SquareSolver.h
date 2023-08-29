@@ -39,7 +39,15 @@ MESSAGE_SOLUTION SolutionSquare (double a, double b, double c, double *x1, doubl
 MESSAGE_SOLUTION SolutionLine (double b, double c, double *x1);
 
 //-----------------------------------------------------------------------------------
-//! A function for entering three time periods of type double
+//! A main input function to type
+//!
+//! @param[out] type Pointer to the first number
+//-----------------------------------------------------------------------------------
+
+void main_input(int *type);
+
+//-----------------------------------------------------------------------------------
+//! A function for entering three time periods of type double in square function
 //!
 //! @param[out] a Pointer to the first number
 //! @param[out] b Pointer to the second number
