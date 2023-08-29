@@ -2,16 +2,16 @@
 #define SQUARE_SOLVER_H
 
 enum MESSAGE_SOLUTION{
-TWOSOL = 0,
-ONESOL = 1,
-INFSOL = 2,
-NOSOL = 3
+    TWOSOL = 0,
+    ONESOL = 1,
+    INFSOL = 2,
+    NOSOL = 3
 };
 
 enum DOUBLE_COMPARSION{
-EQUAL = 0,
-FIRSTLARGER = 1,
-SECONDLARGER = 2
+    EQUAL = 0,
+    FIRSTLARGER = 1,
+    SECONDLARGER = 2
 };
 
 //-----------------------------------------------------------------------------------
@@ -22,10 +22,10 @@ SECONDLARGER = 2
 //! @param[in] c c-coefficient
 //! @param[out] x1 Pointer to the first solution
 //! @param[out] x2 Pointer to the second solution
-//! @return Number of roots
+//! @return Number of roots (from MESSAGE_SOLUTION enum)
 //-----------------------------------------------------------------------------------
 
-int solutionsquare (double a, double b, double c, double *x1, double *x2);
+MESSAGE_SOLUTION SolutionSquare (double a, double b, double c, double *x1, double *x2);    //enum type
 
 //-----------------------------------------------------------------------------------
 //! Solves linear equations bx+c=0
@@ -36,7 +36,7 @@ int solutionsquare (double a, double b, double c, double *x1, double *x2);
 //! @return number of roots
 //-----------------------------------------------------------------------------------
 
-int solutionline (double b, double c, double *x1);
+MESSAGE_SOLUTION SolutionLine (double b, double c, double *x1);
 
 //-----------------------------------------------------------------------------------
 //! A function for entering three time periods of type double
@@ -46,7 +46,16 @@ int solutionline (double b, double c, double *x1);
 //! @param[out] c Pointer to the third number
 //-----------------------------------------------------------------------------------
 
-void input (double *a, double *b, double *c);
+void sq_input (double *a, double *b, double *c);
+
+//-----------------------------------------------------------------------------------
+//! A function for entering three time periods of type double
+//!
+//! @param[out] b Pointer to the first number
+//! @param[out] c Pointer to the second number
+//-----------------------------------------------------------------------------------
+
+void li_input (double *a, double *b);
 
 //-----------------------------------------------------------------------------------
 //! Function to output a message about the roots
@@ -56,7 +65,7 @@ void input (double *a, double *b, double *c);
 //! @param[in] x2 second root
 //-----------------------------------------------------------------------------------
 
-void output (int n, double x1, double x2);
+void output (MESSAGE_SOLUTION SolCount, double x1, double x2);
 
 //-----------------------------------------------------------------------------------
 //! Function for comparing numbers of type double
@@ -69,13 +78,20 @@ int DCompare (double a, double b);
 //-----------------------------------------------------------------------------------
 //! Function for reading a double number from the console with input verification
 //!
-//! @param[in] a first number
-//! @param[in] b the second number
+//! @param[out] a number
 //!
-//! @return is the number responsible for which of the entered numbers is greater
 //-----------------------------------------------------------------------------------
 
-void getdouble (double *a);
+void get_double (double *a);
+
+//-----------------------------------------------------------------------------------
+//! Function for reading a int number of type from the console with input verification
+//!
+//! @param[out] a number
+//!
+//-----------------------------------------------------------------------------------
+
+void get_type (int *a);
 
 //-----------------------------------------------------------------------------------
 //! Function for clearing the input buffer
@@ -84,21 +100,21 @@ void getdouble (double *a);
 void clean();
 
 //-----------------------------------------------------------------------------------
-//! Function to check the correctness of the solutionline function
+//! Function to check the correctness of the SolutionLine function
 //-----------------------------------------------------------------------------------
 
-void testsolutionline();
+void TestSolutionLine();
 
 //-----------------------------------------------------------------------------------
-//! Function to check the correctness of the solutionsquare function
+//! Function to check the correctness of the SolutionSquare function
 //-----------------------------------------------------------------------------------
 
-void testsolutionsquare();
+void TestSolutionSquare();
 
 //-----------------------------------------------------------------------------------
-//! A function for complex verification of ssolutionline and solutionsquare functions
+//! A function for complex verification of ssolutionline and SolutionSquare functions
 //-----------------------------------------------------------------------------------
 
-void testsquaresolver();
+void TestSquareSolver();
 
 #endif

@@ -1,50 +1,65 @@
 #include "SquareSolver.h"
 #include <stdio.h>
 
-struct square_set{
+struct Square_set{
     double a;
     double b;
     double c;
     double x1;
     double x2;
-    int SolCount;
+    MESSAGE_SOLUTION SolCount;
 };
 
-void testsquaresolver(){
-    testsolutionsquare();
-    testsolutionline();
+void TestSquareSolver(){
+    TestSolutionSquare();
+    TestSolutionLine();
 }
 
-void testsolutionsquare(){
-    struct square_set solset[3] = {
-    {1, 2, 3, 0, 0, NOSOL},
-    {1, 2, 1, -1, 0, ONESOL},
-    {1, 2, -3, 1, -3, TWOSOL}
+void TestSolutionSquare(){
+    const int Test_Count = 3;
+    struct Square_set SolSet[Test_Count] = {
+    {.a = 1, .b = 2, .c = 3, .x1 = 0, .x2 = 0, .SolCount = NOSOL},
+    {.a = 1, .b = 2, .c = 1, .x1 = -1, .x2 = 0, .SolCount = ONESOL},
+    {.a = 1, .b = 2, .c = -3, .x1 = 1, .x2 = -3, .SolCount = TWOSOL}
     };
 
-    for(int i=0;i<3;i++){
-        double x1 = solset[i].x1;
-        double x2 = solset[i].x2;
+    for (int i = 0; i < Test_Count; i++){
+        double x1 = SolSet[i].x1;
+        double x2 = SolSet[i].x2;
         int SolCount = -1;
-        SolCount = solutionsquare (solset[i].a, solset[i].b, solset[i].c, &x1, &x2);
-        if ( (x1 == solset[i].x1 && x2 == solset[i].x2 && SolCount == solset[i].SolCount) == false)
-            printf ("Ошибка в solutionsquare, при a = %lf, b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, x2 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].a, solset[i].b, solset[i].c, solset[i].x1, x1, solset[i].x2, x2, solset[i].SolCount), SolCount;
+
+        SolCount = SolutionSquare (SolSet[i].a, SolSet[i].b, SolSet[i].c, &x1, &x2);
+
+        if (( DCompare(x1,SolSet[i].x1) == EQUAL &&
+             DCompare(x2,SolSet[i].x2) == EQUAL &&
+             SolCount == SolSet[i].SolCount)== false)
+
+            printf ("Ошибка в SolutionSquare, при a = %lf, b = %lf, c = %lf. x1 должен быть равен %lf, "
+            "он равен %lf, x2 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d,"
+            " он равен %d \n \n",
+            SolSet[i].a, SolSet[i].b, SolSet[i].c, SolSet[i].x1, x1, SolSet[i].x2, x2, SolSet[i].SolCount), SolCount;
     }
 }
 
-void testsolutionline(){
-    struct square_set solset[3] = {
-    {0, 0, 0, 0, 0, INFSOL},
-    {0, 0, 2, 0, 0, NOSOL},
-    {0, 1, 2, -2, 0, ONESOL}
+void TestSolutionLine(){
+    const int Test_Count = 3;
+    struct Square_set SolSet[Test_Count] = {
+    {.a = 0, .b = 0, .c = 0, .x1 = 0, .x2 = 0, .SolCount = INFSOL},
+    {.a = 0, .b = 0, .c = 2, .x1 = 0, .x2 = 0, .SolCount = NOSOL},
+    {.a = 0, .b = 1, .c = 2, .x1 = -2, .x2 = 0, .SolCount = ONESOL}
     };
 
-    for(int i=0;i<3;i++){
-        double x1 = solset[i].x1;
+    for (int i = 0; i < Test_Count; i++){
+        double x1 = SolSet[i].x1;
         int SolCount=-1;
-        SolCount = solutionline (solset[i].b, solset[i].c, &x1);
-        if ( (x1 == solset[i].x1 && SolCount == solset[i].SolCount) == false)
-            printf ("Ошибка в solutionline, при b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, SolCount должен быть равен %d, он равен %d \n \n", solset[i].b, solset[i].c, solset[i].x1, x1, solset[i].SolCount, SolCount);
+
+        SolCount = SolutionLine (SolSet[i].b, SolSet[i].c, &x1);
+
+        if (( DCompare(x1, SolSet[i].x1) == EQUAL &&
+             SolCount == SolSet[i].SolCount) == false)
+            printf ("Ошибка в SolutionLine, при b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, "
+            "SolCount должен быть равен %d, он равен %d \n \n",
+            SolSet[i].b, SolSet[i].c, SolSet[i].x1, x1, SolSet[i].SolCount, SolCount);
     }
 }
 
