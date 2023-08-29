@@ -2,105 +2,103 @@
 #define SQUARE_SOLVER_H
 
 enum MESSAGE_SOLUTION{
-    TWOSOL = 0,
-    ONESOL = 1,
-    INFSOL = 2,
-    NOSOL = 3
+TWOSOL = 0,
+ONESOL = 1,
+INFSOL = 2,
+NOSOL = 3
 };
 
 enum DOUBLE_COMPARSION{
-    EQUAL = 0,
-    FIRSTLARGER = 1,
-    SECONDLARGER = 2
+EQUAL = 0,
+FIRSTLARGER = 1,
+SECONDLARGER = 2
 };
 
 //-----------------------------------------------------------------------------------
-//! Решает кваратные уравнения ax^2+bx+c=0
+//! Solves the quadratic equations ax^2+bx+c=0
 //!
-//! @param[in] a a-коэффициент
-//! @param[in] b b-коэффициент
-//! @param[in] c c-коэффициент
-//! @param[out] x1 Указатель на первое решение
-//! @param[out] x2 Указатель на второе решение
-//! @return Количество корней
+//! @param[in] a a-coefficient
+//! @param[in] b b-coefficient
+//! @param[in] c c-coefficient
+//! @param[out] x1 Pointer to the first solution
+//! @param[out] x2 Pointer to the second solution
+//! @return Number of roots
 //-----------------------------------------------------------------------------------
 
 int solutionsquare (double a, double b, double c, double *x1, double *x2);
 
 //-----------------------------------------------------------------------------------
-//! Решает линейные уравнения bx+c=0
+//! Solves linear equations bx+c=0
 //!
-//! @param[in] b b-коэффициент
-//! @param[in] c c-коэффициент
-//! @param[out] x1 Указатель на решение
-//! @return КОличество корней
+//! @param[in] b b-coefficient
+//! @param[in] c c-coefficient
+//! @param[out] x1 Pointer to the solution
+//! @return number of roots
 //-----------------------------------------------------------------------------------
 
 int solutionline (double b, double c, double *x1);
 
 //-----------------------------------------------------------------------------------
-//! Функция для ввода трех переременных типа double
+//! A function for entering three time periods of type double
 //!
-//! @param[out] a Указатель на первое число
-//! @param[out] b Указатель на второе число
-//! @param[out] c Указатель на третье число
+//! @param[out] a Pointer to the first number
+//! @param[out] b Pointer to the second number
+//! @param[out] c Pointer to the third number
 //-----------------------------------------------------------------------------------
 
 void input (double *a, double *b, double *c);
 
 //-----------------------------------------------------------------------------------
-//! Функция для вывода сообщения о корнях
+//! Function to output a message about the roots
 //!
-//! @param[in] SolCount номер сообщения
-//! @param[in] x1 первый корень
-//! @param[in] x2 второй корень
+//! @param[in] SolCount message number
+//! @param[in] x1 first root
+//! @param[in] x2 second root
 //-----------------------------------------------------------------------------------
 
 void output (int n, double x1, double x2);
 
 //-----------------------------------------------------------------------------------
-//! Функция для сравнивания чисел типа double
+//! Function for comparing numbers of type double
 //!
-//! @param[out] a Указатель на переменную, в которую вводится число
+//! @param[out] a Pointer to the variable into which the number is entered
 //-----------------------------------------------------------------------------------
 
 int DCompare (double a, double b);
 
 //-----------------------------------------------------------------------------------
-//! Функция для считывания числа типа double с консоли с проверкой ввода
+//! Function for reading a double number from the console with input verification
 //!
-//! @param[in] a первое число
-//! @param[in] b второе число
+//! @param[in] a first number
+//! @param[in] b the second number
 //!
-//! @return Число, отвечающее за то, какое из введенных чисел больше
+//! @return is the number responsible for which of the entered numbers is greater
 //-----------------------------------------------------------------------------------
 
 void getdouble (double *a);
 
 //-----------------------------------------------------------------------------------
-//! Функция для очистки буфера ввода
+//! Function for clearing the input buffer
 //-----------------------------------------------------------------------------------
 
 void clean();
 
 //-----------------------------------------------------------------------------------
-//! Функция для проверки верности работы функции solutionline
+//! Function to check the correctness of the solutionline function
 //-----------------------------------------------------------------------------------
 
 void testsolutionline();
 
 //-----------------------------------------------------------------------------------
-//! Функция для проверки верности работы функции solutionsquare
+//! Function to check the correctness of the solutionsquare function
 //-----------------------------------------------------------------------------------
 
 void testsolutionsquare();
 
 //-----------------------------------------------------------------------------------
-//! Функцкия для комплексной проверки функций ssolutionline и solutionsquare
+//! A function for complex verification of ssolutionline and solutionsquare functions
 //-----------------------------------------------------------------------------------
 
 void testsquaresolver();
 
 #endif
-
-
