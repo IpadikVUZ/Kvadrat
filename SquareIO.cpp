@@ -10,7 +10,7 @@ void sq_input (double *a, double *b, double *c){
     const int var_counts = 3;
     double *variables [var_counts] = {a, b, c};
     char variables_symb[var_counts] = {'a', 'b', 'c'};
-    printf("Данная программа решает уравнения типа ax^2+bx+c=0, где a b c это числа \n");
+    printf ("Данная программа решает уравнения типа ax^2+bx+c=0, где a b c это числа \n");
     for ( int i = 0; i < var_counts; i++) {
         printf ("Введите %c:  ", variables_symb[i]);
         get_double (variables[i]);
