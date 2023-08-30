@@ -1,11 +1,13 @@
 #ifndef SQUARE_SOLVER_H
 #define SQUARE_SOLVER_H
 
+
 enum MESSAGE_SOLUTION{
     TWOSOL = 0,
     ONESOL = 1,
     INFSOL = 2,
-    NOSOL = 3
+    NOSOL = 3,
+    UNKNOWN = 4
 };
 
 enum DOUBLE_COMPARSION{
@@ -44,7 +46,7 @@ MESSAGE_SOLUTION SolutionLine (double b, double c, double *x1);
 //! @param[out] a char from cmd
 //-----------------------------------------------------------------------------------
 
-int main_input(char a);
+int flag_input(char a);
 
 //-----------------------------------------------------------------------------------
 //! A function for entering three time periods of type double in square function
@@ -66,11 +68,20 @@ void sq_input (double *a, double *b, double *c);
 void li_input (double *a, double *b);
 
 //-----------------------------------------------------------------------------------
+//! A function that introduces a given number of initial coefficients of an equation
+//!
+//! @param[out] b Pointer to the first number
+//! @param[out] c Pointer to the second number
+//-----------------------------------------------------------------------------------
+
+void input_coef (const int VAR_COUNTS, double *variables[], char *variables_symb[]);
+
+//-----------------------------------------------------------------------------------
 //! Function to output a message about the roots
 //!
-//! @param[in] SolCount message number
-//! @param[in] x1 first root
-//! @param[in] x2 second root
+//! @param[in] VAR_COUNTS count of coefs( 2 or 3)
+//! @param[in] *variables array of doubles pointers, when are entering
+//! @param[in] *variables_symb array of variables_symb
 //-----------------------------------------------------------------------------------
 
 void output (MESSAGE_SOLUTION SolCount, double x1, double x2);

@@ -3,7 +3,7 @@
 
 int main(int argc, char *argv[]){
 
-    MESSAGE_SOLUTION SolCount; // Переменная, отвечающая за кол-во корней
+    MESSAGE_SOLUTION SolCount = UNKNOWN; // Переменная, отвечающая за кол-во корней
     double a  = 0,
            b  = 0,
            c  = 0,
@@ -12,10 +12,10 @@ int main(int argc, char *argv[]){
     int type = 0;
 
     if(argv[1] != NULL)
-        type = main_input (*argv[1]);
+        type = flag_input (*argv[1]);
 
     if (type == 0){
-        TestSquareSolver();
+        TestSquareSolver();     //флаг на тест
         sq_input (&a, &b, &c);
         SolCount = SolutionSquare (a, b, c, &x1, &x2);
         output (SolCount, x1, x2);
