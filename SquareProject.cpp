@@ -9,19 +9,20 @@ int main(int argc, char *argv[]){
            c  = 0,
            x1 = 0,
            x2 = 0;// ax^2+bx+c=0
-    int type = 0;
+    bool line_flag = false;
+    bool test_flag = false;
+    flag_input (argc, argv, &line_flag, &test_flag);
 
-    if(argv[1] != NULL)
-        type = flag_input (*argv[1]);
-
-    if (type == 0){
-        TestSquareSolver();     //פכאד םא עוסע
+    if (line_flag == false){
+        if (test_flag == true)
+            TestSquareSolver();     //פכאד םא עוסע
         sq_input (&a, &b, &c);
         SolCount = SolutionSquare (a, b, c, &x1, &x2);
         output (SolCount, x1, x2);
     }
     else {
-        TestSolutionLine();
+        if (test_flag == true)
+            TestSolutionLine();
         li_input (&b, &c);
         SolCount = SolutionSquare (a, b, c, &x1, &x2);
         output (SolCount, x1, x2);

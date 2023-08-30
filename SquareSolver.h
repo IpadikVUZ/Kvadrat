@@ -43,10 +43,13 @@ MESSAGE_SOLUTION SolutionLine (double b, double c, double *x1);
 //-----------------------------------------------------------------------------------
 //! A main input function to type
 //!
-//! @param[out] a char from cmd
-//-----------------------------------------------------------------------------------
+//! @param[in] argc argc from main
+//! @param[int] *argv[] pointer to array of char arrays
+//! @param[out] *line_flag  pointer to bool, that changing square or line
+//! @param[out] *test_flag  pointer to bool, that changing turn on test or not
+//----------------------------------------------------------------------------------- !!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-int flag_input(char a);
+void flag_input(int argc, char* argv[], bool *line_flag, bool *test_flag);
 
 //-----------------------------------------------------------------------------------
 //! A function for entering three time periods of type double in square function
