@@ -2,29 +2,20 @@ F1 = SquareSolver
 F2 = Squaretester
 F3 = SquareProject
 F4 = SquareIO
-CXX = g++
+CC = g++
 #-копипаста объединить
 #Флаги
-
-
-
+OBJECTS=$(F1).o $(F2).o $(F3).o $(F4).o
 CFLAGS=-Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-equal -Winline -Wunreachable-code -Wmissing-declarations -Wmissing-include-dirs -Wswitch-enum -Wswitch-default -Weffc++ -Wmain -Wextra -Wall -g -pipe -fexceptions -Wcast-qual -Wconversion -Wctor-dtor-privacy -Wempty-body -Wformat-security -Wformat=2 -Wignored-qualifiers -Wlogical-op -Wno-missing-field-initializers -Wnon-virtual-dtor -Woverloaded-virtual -Wpointer-arith -Wsign-promo -Wstack-usage=8192 -Wstrict-aliasing -Wstrict-null-sentinel -Wtype-limits -Wwrite-strings -Werror=vla -D_DEBUG -D_EJUDGE_CLIENT_SIDE
 all: $(F3)
 
-$(F3): $(F1).o $(F2).o $(F3).o $(F4).o
-	$(CXX) $(F1).o $(F2).o $(F3).o $(F4).o -o $(F3)
+$(F3): $(OBJECTS)
+	$(CC) $(OBJECTS)
 
-$(F1).o: $(F1).cpp
-	$(CXX) -c $(F1).cpp
+.SUFFIXES: .cpp .o
 
-$(F2).o: $(F2).cpp
-	$(CXX) -c $(F2).cpp
-
-$(F3).o: $(F3).cpp
-	$(CXX) -c $(F3).cpp
-
-$(F4).o: $(F4).cpp
-	$(CXX) -c $(F4).cpp
+.cpp.o:
+	$(CC) $(CFLAGS) -c -o $@ $<
 
 clean:
 	rm -rf *.o $(F3).exe
