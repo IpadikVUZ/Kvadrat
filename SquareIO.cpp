@@ -1,3 +1,4 @@
+#include "SquareIO.h"
 #include "SquareSolver.h"
 #include <assert.h>
 #include <stdio.h>
@@ -17,14 +18,14 @@ void flag_input(int argc, char *argv[], bool *line_flag, bool *test_flag){
                 case 't' :
                     *test_flag = true;
                     break;
-
+                default: fprintf (stderr,"Непонятный ключ в командной строке \n");
             }
         }
     }
 }
 
-void input_coef (const int VAR_COUNTS, double *variables[], char variables_symb[]){
-    for (int i = 0; i < VAR_COUNTS; i++) {
+void input_coef (const int var_counts, double *variables[], char variables_symb[]){
+    for (int i = 0; i < var_counts; i++) {
         printf ("Введите %c:  ", variables_symb[i]);
         get_double (variables[i]);
     }
@@ -54,7 +55,7 @@ void li_input (double *b, double *c){
     input_coef(VAR_COUNTS, variables, variables_symb);
 }
 
-void output (MESSAGE_SOLUTION SolCount, double x1, double x2){
+void output (int SolCount, double x1, double x2){
     switch(SolCount){
         case TWOSOL:
            printf ("Два решения: %lf и %lf",x1,x2);
@@ -68,16 +69,19 @@ void output (MESSAGE_SOLUTION SolCount, double x1, double x2){
         case NOSOL:
            printf ("Нет решений");
            break;
-        case UNKNOWN:
+           case UNKNOWN:
            printf ("UNKNOWN");
+           break;
+        default:
+           printf ("ERRORS SWITCH");
            break;
     }
 }
 
 void get_double (double *a){
     assert (a != NULL);
-    char tester = '0';
-    while (scanf ("%lf", a) != 1 || (tester = getchar()) != '\n' && tester != 'EOF'){
+    int tester = '0';
+    while (scanf ("%lf", a) != 1 || ( (tester = getchar()) != '\n' && tester != EOF) ){
           fprintf (stderr,"Ошибка ввода, попробуйте еще раз  ");
           clean();
     }

@@ -1,4 +1,5 @@
 #include "SquareSolver.h"
+#include "SquareTester.h"
 #include <stdio.h>
 
 struct Square_set{
@@ -53,7 +54,7 @@ void TestSolutionLine(){
         double x1 = SolSet[i].x1;
         int SolCount = SolutionLine (SolSet[i].b, SolSet[i].c, &x1);
 
-        if (( DCompare (x1, SolSet[i].x1) == EQUAL &&
+        if ((DCompare (x1, SolSet[i].x1) == EQUAL &&
              SolCount == SolSet[i].SolCount) == false)
             fprintf (stderr, "Ошибка в SolutionLine, при b = %lf, c = %lf. x1 должен быть равен %lf, он равен %lf, "
             "SolCount должен быть равен %d, он равен %d \n \n",

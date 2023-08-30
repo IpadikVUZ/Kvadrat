@@ -1,4 +1,6 @@
 #include "SquareSolver.h"
+#include "SquareTester.h"
+#include "SquareIO.h"
 #include <TXLib.h>
 
 int main(int argc, char *argv[]){
@@ -15,7 +17,7 @@ int main(int argc, char *argv[]){
 
     if (line_flag == false){
         if (test_flag == true)
-            TestSquareSolver();     //פכאד םא עוסע
+            TestSquareSolver();
         sq_input (&a, &b, &c);
         SolCount = SolutionSquare (a, b, c, &x1, &x2);
         output (SolCount, x1, x2);
@@ -24,7 +26,7 @@ int main(int argc, char *argv[]){
         if (test_flag == true)
             TestSolutionLine();
         li_input (&b, &c);
-        SolCount = SolutionSquare (a, b, c, &x1, &x2);
+        SolCount = SolutionLine (b, c, &x1);
         output (SolCount, x1, x2);
     }
 
