@@ -58,10 +58,10 @@ void li_input (double *b, double *c){
 void output (int SolCount, double x1, double x2){
     switch(SolCount){
         case TWOSOL:
-           printf ("Два решения: %lf и %lf",x1,x2);
+           printf ("Два решения: \n %10.15lf \n %10.15lf",x1,x2);
            break;
         case ONESOL:
-           printf ("Одно решение %lf", x1);
+           printf ("Одно решение %10.15lf", x1);
            break;
         case INFSOL:
            printf ("Бесконечное количество решений");
@@ -81,10 +81,11 @@ void output (int SolCount, double x1, double x2){
 void get_double (double *a){
     assert (a != NULL);
     int tester = '0';
-    while (scanf ("%lf", a) != 1 || ( (tester = getchar()) != '\n' && tester != EOF) ){
+    while (scanf ("%lf", a) != 1 || ( (tester = getchar()) != '\n' && tester != EOF )){
           fprintf (stderr,"Ошибка ввода, попробуйте еще раз  ");
           clean();
     }
+
 }
 
 
