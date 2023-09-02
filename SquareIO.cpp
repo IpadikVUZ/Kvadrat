@@ -4,11 +4,14 @@
 #include <stdio.h>
 
 void flag_input(int argc, char *argv[], bool *line_flag, bool *test_flag){
+
     assert (argv != NULL);
     assert (line_flag != NULL);
     assert (test_flag != NULL);
+
     char *str = NULL;
     for(int i = 1; i < argc; i++){
+        assert (argv[i] != NULL);
         str = argv[i];
      if (str[0] == '-') {
          switch (str[1]) {
@@ -18,7 +21,7 @@ void flag_input(int argc, char *argv[], bool *line_flag, bool *test_flag){
                 case 't' :
                     *test_flag = true;
                     break;
-                default: fprintf (stderr,"Непонятный ключ в командной строке \n");
+                default: fprintf (stderr,"Непонятный ключ в командной строке (-%c)\n", str[1]);
             }
         }
     }
@@ -33,6 +36,7 @@ void input_coef (const int var_counts, double *variables[], char variables_symb[
 }
 
 void sq_input (double *a, double *b, double *c){
+
     assert (a != NULL);
     assert (b != NULL);
     assert (c != NULL);
@@ -41,27 +45,28 @@ void sq_input (double *a, double *b, double *c){
     double *variables[VAR_COUNTS] = {a, b, c};
     char variables_symb[VAR_COUNTS] = {'a', 'b', 'c'};
     printf ("Данная программа решает уравнения типа ax^2+bx+c=0, где a b c это числа \n");
-    input_coef(VAR_COUNTS, variables, variables_symb);
+    input_coef (VAR_COUNTS, variables, variables_symb);
 }
 
 void li_input (double *b, double *c){
+
     assert (b != NULL);
     assert (c != NULL);
 
     const int VAR_COUNTS = 2;
     double *variables[VAR_COUNTS] = {b, c};
     char variables_symb[VAR_COUNTS] = {'b', 'c'};
-    printf("Данная программа решает уравнения типа bx+c=0, где b и c это числа \n");
-    input_coef(VAR_COUNTS, variables, variables_symb);
+    printf ("Данная программа решает уравнения типа bx+c=0, где b и c это числа \n");
+    input_coef (VAR_COUNTS, variables, variables_symb);
 }
 
 void output (int SolCount, double x1, double x2){
-    switch(SolCount){
+    switch (SolCount){
         case TWOSOL:
-           printf ("Два решения: \n %10.15lf \n %10.15lf",x1,x2);
+           printf ("Два решения: \n %.15lf \n %.15lf",x1,x2);
            break;
         case ONESOL:
-           printf ("Одно решение %10.15lf", x1);
+           printf ("Одно решение %.15lf", x1);
            break;
         case INFSOL:
            printf ("Бесконечное количество решений");

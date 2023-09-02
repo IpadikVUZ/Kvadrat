@@ -30,8 +30,10 @@ MESSAGE_SOLUTION SolutionSquare (double a, double b, double c, double *x1, doubl
             double sqrtd = sqrt(discriminant);
             *x1 = (-b + sqrtd) / (2*a);
             *x2 = (-b - sqrtd) / (2*a);
-            if (DCompare(*x1,0) == EQUAL) *x1 = 0;
-            if (DCompare(*x2,0) == EQUAL) *x2 = 0;
+            if (DCompare(*x1,0) == EQUAL)
+                *x1 = 0;
+            if (DCompare(*x2,0) == EQUAL)
+                *x2 = 0;
             return TWOSOL;
         }
     }
@@ -50,7 +52,8 @@ MESSAGE_SOLUTION SolutionLine (double b, double c, double *x1){
                 return NOSOL;
      }
      else{
-            if (DCompare(*x1,0) == EQUAL) *x1 = 0;
+            if (DCompare(*x1,0) == EQUAL)
+                *x1 = 0;
             *x1 = -c / b;
             return ONESOL;
      }
@@ -59,7 +62,10 @@ MESSAGE_SOLUTION SolutionLine (double b, double c, double *x1){
 int DCompare (double a, double b){
 
     double epsilon = 1e-15;
-    if (fabs(a - b) < epsilon) return EQUAL;
-    else if (a - b > epsilon) return FIRSTLARGER;
-    else return SECONDLARGER;
+    if (fabs(a - b) < epsilon)
+        return EQUAL;
+    else if (a - b > epsilon)
+        return FIRSTLARGER;
+    else
+        return SECONDLARGER;
 }
