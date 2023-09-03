@@ -5,7 +5,8 @@ enum MESSAGE_SOLUTION{
     ONESOL = 1,
     INFSOL = 2,
     NOSOL = 3,
-    UNKNOWN = 4
+    UNKNOWN = 4,
+    TOO_MANY_MODES = 5
 };
 
 enum DOUBLE_COMPARSION{

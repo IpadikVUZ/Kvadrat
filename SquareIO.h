@@ -1,16 +1,25 @@
 #ifndef SQUAREIO_H_INCLUDED
 #define SQUAREIO_H_INCLUDED
 
+enum MODE {
+
+    LINE_MODE = 0,
+    SQUARE_MODE = 1,
+    UNKNOWN_MODE = 2,
+    TOO_MANY_ARGS_MODE = 3
+
+};
+
 //-----------------------------------------------------------------------------------
 //! A main input function to type
 //!
 //! @param[in] argc argc from main
 //! @param[int] *argv[] pointer to array of char arrays
-//! @param[out] *line_flag  pointer to bool, that changing square or line
-//! @param[out] *test_flag  pointer to bool, that changing turn on test or not
+//! @param[out] *line_mode  pointer to bool, that changing square or line
+//! @param[out] *need_tests  pointer to bool, that changing turn on test or not
 //-----------------------------------------------------------------------------------
 
-void flag_input(int argc, char* argv[], bool *line_flag, bool *test_flag);
+void flag_input(const int argc, const char* argv[], enum MODE *line_mode, bool *need_tests);
 
 //-----------------------------------------------------------------------------------
 //! A function for entering three time periods of type double in square function

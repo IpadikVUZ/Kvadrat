@@ -3,31 +3,62 @@
 #include <assert.h>
 #include <stdio.h>
 
-void flag_input(int argc, char *argv[], bool *line_flag, bool *test_flag){
+void flag_input(const int argc, const char *argv[], MODE *mode, bool *need_tests) {
 
     assert (argv != NULL);
-    assert (line_flag != NULL);
-    assert (test_flag != NULL);
+    assert (mode != NULL);
+    assert (need_tests != NULL);
 
-    char *str = NULL;
-    for(int i = 1; i < argc; i++){
+    *mode = UNKNOWN_MODE;
+    char str[2];
+
+    for(int i = 1; i < argc; i++) {
         assert (argv[i] != NULL);
-        str = argv[i];
-     if (str[0] == '-') {
-         switch (str[1]) {
+        str[0] = *argv[i];
+        str[1] = *(argv[i]+1);
+        assert (str != NULL);
+        if (str[0] == '-') {
+             switch (str[1]) {
+
                 case 'l':
-                    *line_flag = true;
+
+                    if (*mode == UNKNOWN_MODE) {
+                        *mode = LINE_MODE;
+                        break;
+                    }
+
+                    else {
+                        *mode = TOO_MANY_ARGS_MODE;
+                        break;
+
+                    }
+
+                case 's':
+
+                    if (*mode == UNKNOWN_MODE) {
+                        *mode = SQUARE_MODE;
+                        break;
+                    }
+
+                    else {
+                        *mode = TOO_MANY_ARGS_MODE;
+                        break;
+                    }
+
+                case 't':
+
+                    *need_tests = true;
                     break;
-                case 't' :
-                    *test_flag = true;
+
+                default:
+                    fprintf (stderr,"Непонятный ключ в командной строке (-%c)\n", str[1]);
                     break;
-                default: fprintf (stderr,"Непонятный ключ в командной строке (-%c)\n", str[1]);
             }
         }
     }
 }
 
-void input_coef (const int var_counts, double *variables[], char variables_symb[]){
+void input_coef (int var_counts, double *variables[], char variables_symb[]) {
     for (int i = 0; i < var_counts; i++) {
         printf ("Введите %c:  ", variables_symb[i]);
         get_double (variables[i]);
@@ -35,7 +66,7 @@ void input_coef (const int var_counts, double *variables[], char variables_symb[
 
 }
 
-void sq_input (double *a, double *b, double *c){
+void sq_input (double *a, double *b, double *c) {
 
     assert (a != NULL);
     assert (b != NULL);
@@ -48,7 +79,7 @@ void sq_input (double *a, double *b, double *c){
     input_coef (VAR_COUNTS, variables, variables_symb);
 }
 
-void li_input (double *b, double *c){
+void li_input (double *b, double *c) {
 
     assert (b != NULL);
     assert (c != NULL);
@@ -60,33 +91,41 @@ void li_input (double *b, double *c){
     input_coef (VAR_COUNTS, variables, variables_symb);
 }
 
-void output (int SolCount, double x1, double x2){
-    switch (SolCount){
+void output (int SolCount, double x1, double x2) {
+    switch (SolCount) {
         case TWOSOL:
            printf ("Два решения: \n %.15lf \n %.15lf",x1,x2);
            break;
+
         case ONESOL:
            printf ("Одно решение %.15lf", x1);
            break;
+
         case INFSOL:
            printf ("Бесконечное количество решений");
            break;
+
         case NOSOL:
-           printf ("Нет решений");
-           break;
+               printf ("Нет решений");
+               break;
+
            case UNKNOWN:
-           printf ("UNKNOWN");
-           break;
+               printf ("UNKNOWN MODE");
+               break;
+
+           case TOO_MANY_MODES:
+                printf ("TOO MANY MODES!!!");
+
         default:
-           printf ("ERRORS SWITCH");
-           break;
+               printf ("ERRORS SWITCH");
+               break;
     }
 }
 
-void get_double (double *a){
+void get_double (double *a) {
     assert (a != NULL);
     int tester = '0';
-    while (scanf ("%lf", a) != 1 || ( (tester = getchar()) != '\n' && tester != EOF )){
+    while (scanf ("%lf", a) != 1 || ( (tester = getchar()) != '\n' && tester != EOF )) {
           fprintf (stderr,"Ошибка ввода, попробуйте еще раз  ");
           clean();
     }
@@ -95,7 +134,7 @@ void get_double (double *a){
 
 
 
-void clean(){
+void clean() {
     while (getchar() != '\n') {;}
 
 }
